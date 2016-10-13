@@ -4,13 +4,10 @@
 
 
 // this is your constructor
-//module.exports = function Letter() {
+module.exports = function Letter() {
+	this.guess = [];
+	
     // do stuff in here for `Letter`
 }
 //===========
 
-var letter = function(){
-
-}
-
-module.exports = letter;

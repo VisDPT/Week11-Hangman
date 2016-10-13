@@ -2,25 +2,16 @@
 // // The app should end when a player guesses the correct word or runs out of guesses.
 
 
-// "┈╭━━━━━━━━━━━╮┈ \n" + 
-// 				"╭╯┈╭━━╮┈╭━━╮┈╰╮ \n" + 
-// 				"┃┈┃┃╭╮┃┈┃╭╮┃┃┈┃\n" + 
-// "┃┈┃┻┻┻┛┈┗┻┻┻┃┈┃ \n" +
-// "┃┈┃╭╮┈◢▇◣┈╭╮┃┈┃ \n" +
-// "╰┳╯┃╰━━┳┳┳╯┃╰┳╯ \n" +
-// "┈┃┈╰━━━┫┃┣━╯┈┃┈ \n" +
-// "┈┃┈┈┈┈┈╰━╯┈┈┈┃┈ \n", 
-
 //var letter = require('./letter.js');
 var inquirer = require('inquirer');
 
 inquirer.prompt([{ // Start
         type: "confirm",
         message: "\n" +
-            "   ╔══╗ ♫        ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n" +
+            "   ╔══╗ ♫      ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n" +
             "   ║██║♫♪        ARE YOU READY TO PLAY MUSICAL HANGMAN?   \n" +
             "   ║ ◎♫♪♫   	  To Play: Guess a letter! You get 5 tries!\n" +
-            "   ╚══╝          ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n" ,
+            "   ╚══╝        ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n" ,
         name: "confirm",
         default: true
 
@@ -30,7 +21,7 @@ inquirer.prompt([{ // Start
     {
         type: "input",
         message: "What is your first guess?",
-        name: "firstGuess"
+        name: "firstGuess",
     },
 
     {
@@ -67,7 +58,7 @@ inquirer.prompt([{ // Start
 
 
     // If we log that user as a JSON, we can see how it looks.
-    console.log(JSON.stringify(user, null, 2));
+   // console.log(JSON.stringify(user, null, 2));
 
     // If the user confirms, we displays the user's name and pokemon from the answers. 
     if (user.confirm) {
