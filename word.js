@@ -11,8 +11,7 @@ function Word(value) {
 	// The word we want our users to guess
 	this.value = value;
 	// An array of Letter objects that represent our word
-	this.letters = value
-		.split()
+	this.letters = value.split("")
 		.map(function(v) {
 			return new Letter(v);
 		});

@@ -1,9 +1,22 @@
 //Your game.js file will randomly select a word for the player.
 var Word = require('./word.js');
+var Letter = require('./letter.js')
 
 
-Word.value = ["Beatles", "U2", "Pharell", "Tupac", "Rihanna", "Coldplay"]
-console.log (Word.value);
 
-var chosenWord = Word.value[Math.floor(Math.random()*Word.value.length)]
-console.log(chosenWord);
+
+
+var wordsArray = ["BEATLES", "U2", "PHARELL", "TUPAC", "RIHANNA", "COLDPLAY"];
+
+var randomWord = wordsArray[Math.floor(Math.random()*wordsArray.length)];
+
+var SelectedWord = new Word(randomWord);
+
+//DEBUGGING
+//console.log (SelectedWord); //Prints the random chose word!
+//console.log (SelectedWord.value); //Prints the letter of chose word!
+
+
+
+
+

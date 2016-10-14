@@ -7,82 +7,95 @@ var inquirer = require('inquirer');
 
 var Letter = require('./game.js');
 var Word = require('./word.js');
-console.log(Word.value);
 
-inquirer.prompt([{ // Start
+//var guesses[];
+var guessesLeft = 8
+
+
+var startGame = function() {
+    inquirer.prompt([{ // Start
         type: "confirm",
         message: "\n" +
-            "   ╔══╗ ♫      ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n" +
-            "   ║██║♫♪        ARE YOU READY TO PLAY MUSICAL HANGMAN?   \n" +
-            "   ║ ◎♫♪♫   	  To Play: Guess a letter! You get 5 tries!\n" +
-            "   ╚══╝        ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n" ,
+                    "   ╔══╗ ♫      ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n" +
+                    "   ║██║♫♪        ARE YOU READY TO PLAY MUSICAL HANGMAN?   \n" +
+                    "   ║ ◎♫♪♫        To Play: Guess a letter! You get 5 tries!\n" +
+                    "   ╚══╝        ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n",
         name: "confirm",
         default: true
-
-    },
-
-    // Here we create a basic text prompt.
-    {
-        type: "input",
-        message: "What is your first guess?",
-        name: "firstGuess",
-    },
-
-    {
-        type: "input",
-        message: "What is your second guess?",
-        name: "secondGuess"
-    },
-
-    {
-        type: "input",
-        message: "What is your third guess?",
-        name: "thirdGuess"
-    },
-
-    {
-        type: "input",
-        message: "What is your fourth guess?",
-        name: "fourthGuess"
-    },
-
-    {
-        type: "input",
-        message: "What is your fifth guess?",
-        name: "fifthGuess"
-    },
+    }, ]).then(function(user) {
+        //if no, then print something
+        if (user.confirm) {
+            inquirer.prompt([{
+                type: "input",
+                message: "Guess a letter.",
+                name: "guess",
+            }, ]).then(function(user) {
+                console.log("good guess")
+            });
 
 
-    // Here we ask the user to confirm.
+
+        }
+        //if yes begin game functions
+        else {
+            console.log("=======================================");
+            console.log("♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪");
+            console.log("");
+            console.log("You are missing out on some serious fun!\n"+
+                        "            ╲╲╲╲╲┏━━━┓╱╱╱╱╱\n"+
+                        "♫   ♫   ♫   ╲┏━━━┻━━━┻━━━┓╱\n"+
+                        "  ♪   ♪   ♪ ╲┃╭━╮┏━━━┓╭━╮┃╱\n"+
+                        "            ╱┃┃╳┃┣◯━◯┫┃╳┃┃╲\n"+
+                        "            ╱┃╰━╯┣━━━┫╰━╯┃╲\n"+
+                        "            ╱┃┈▊▊▊▊┈▂▃▅▇┈┃╲\n"+
+                        "            ╱┗━━━━━━━━━━━┛╲\n");
+            console.log("");
+            console.log("♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪");
+            console.log("=======================================");
+
+            //startGame();
+        }
+    });
+}
+
+startGame();
+
+                    // if (guesses.length < 8) {
+                    //     inquirer.prompt([
+                    //         // Here we create a basic text prompt.
+                    //         {
+                    //             type: "input",
+                    //             message: "Guess a letter.",
+                    //             name: "guess",
+                    //         },
 
 
-    // Once we are done with all the questions... "then" we do stuff with the answers
-    // In this case, we store all of the answers into a "user" object that inquirer makes for us. 
-]).then(function(user) {
+                            // If we log that user as a JSON, we can see how it looks.
+                            // console.log(JSON.stringify(user, null, 2));
+
+                            // If the user confirms, we displays the user's name and pokemon from the answers. 
+
+          
 
 
-    // If we log that user as a JSON, we can see how it looks.
-   // console.log(JSON.stringify(user, null, 2));
+                        // Here we ask the user to confirm.
 
-    // If the user confirms, we displays the user's name and pokemon from the answers. 
-    if (user.confirm) {
 
-        console.log("♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪");
-        console.log("");
-        console.log("Welcome " + user.name + "! \n");
+                        // Once we are done with all the questions... "then" we do stuff with the answers
+                        // In this case, we store all of the answers into a "user" object that inquirer makes for us. 
 
-        console.log("Your guesse");
-        console.log("♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪");
 
-        // If the user does not confirm, then a message is provided and the program quits. 
-    } else {
 
-        console.log("");
-        console.log("");
-        console.log("You are missing out on some serious fun!");
-        console.log("");
-        console.log("");
+                        // If we log that user as a JSON, we can see how it looks.
+                        // console.log(JSON.stringify(user, null, 2));
 
-    }
 
-});
+
+                        // If the user guess == letter.value, we displays the user letter
+
+
+                        // If the user guess == letter.value, we displays the user letter 
+
+
+
+
