@@ -8,8 +8,55 @@ var inquirer = require('inquirer');
 var Letter = require('./game.js');
 var Word = require('./word.js');
 
-//var guesses[];
-var guessesLeft = 8
+var userGuessesArray=[];
+var guessesLeft = 10;
+
+
+var noPlay = function() {
+    console.log("=======================================" +
+            "♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪" +
+            "                                       \n"+
+            "You are missing out on some serious fun!\n"+
+                        "            ╲╲╲╲╲┏━━━┓╱╱╱╱╱\n"+
+                        "♫   ♫   ♫   ╲┏━━━┻━━━┻━━━┓╱\n"+
+                        "  ♪   ♪   ♪ ╲┃╭━╮┏━━━┓╭━╮┃╱\n"+
+                        "            ╱┃┃╳┃┣◯━◯┫┃╳┃┃╲\n"+
+                        "            ╱┃╰━╯┣━━━┫╰━╯┃╲\n"+
+                        "            ╱┃┈▊▊▊▊┈▂▃▅▇┈┃╲\n"+
+                        "            ╱┗━━━━━━━━━━━┛╲\n"+
+            "                                       \n" +
+            "♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪\n"+
+            "=======================================");
+}
+
+
+var play = function() {
+    if (userGuessesArray.length <= 9) {
+        inquirer.prompt([{
+            type: "input",
+            message: "Guess a letter.",
+            name: "guess",
+        }, 
+        ]).then(function(answers) {
+            console.log("You chose " +answers.guess);
+            userGuessesArray.push(answers.guess);
+            //DEBUG TO SEE IF ARRAY WORKS!
+            //console.log(userGuessesArray);
+            guessesLeft --;
+            console.log("You have " + guessesLeft + "!");
+            
+        play();
+
+            //if the 
+
+
+
+
+            //console.log("good guess")
+        });
+    }
+}
+
 
 
 var startGame = function() {
@@ -25,34 +72,12 @@ var startGame = function() {
     }, ]).then(function(user) {
         //if no, then print something
         if (user.confirm) {
-            inquirer.prompt([{
-                type: "input",
-                message: "Guess a letter.",
-                name: "guess",
-            }, ]).then(function(user) {
-                console.log("good guess")
-            });
-
-
-
+            play();
         }
         //if yes begin game functions
         else {
-            console.log("=======================================");
-            console.log("♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪");
-            console.log("");
-            console.log("You are missing out on some serious fun!\n"+
-                        "            ╲╲╲╲╲┏━━━┓╱╱╱╱╱\n"+
-                        "♫   ♫   ♫   ╲┏━━━┻━━━┻━━━┓╱\n"+
-                        "  ♪   ♪   ♪ ╲┃╭━╮┏━━━┓╭━╮┃╱\n"+
-                        "            ╱┃┃╳┃┣◯━◯┫┃╳┃┃╲\n"+
-                        "            ╱┃╰━╯┣━━━┫╰━╯┃╲\n"+
-                        "            ╱┃┈▊▊▊▊┈▂▃▅▇┈┃╲\n"+
-                        "            ╱┗━━━━━━━━━━━┛╲\n");
-            console.log("");
-            console.log("♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪");
-            console.log("=======================================");
-
+            noPlay();
+            
             //startGame();
         }
     });
