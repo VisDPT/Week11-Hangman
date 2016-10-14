@@ -4,10 +4,17 @@
 
 
 // this is your constructor
-module.exports = function Letter() {
-	this.guess = [];
-	
-    // do stuff in here for `Letter`
+function Letter(value) {
+    this.value = value;
+    this.visible = false;
 }
-//===========
 
+Letter.prototype.show = function() { //show me the letter, if visible, I get the letter
+    if (this.visible) {
+        return this.value; 
+    } else {
+        return '_';
+    }
+}
+
+module.exports = Letter;

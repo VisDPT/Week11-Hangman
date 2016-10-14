@@ -5,55 +5,47 @@
 
 
 
+var Letter = require('./letter.js')
 
-var letter = require('./letter.js');
-
-module.exports = function Word() {
-    // do stuff in here for `Letter`
+function Word(value) {
+	// The word we want our users to guess
+	this.value = value;
+	// An array of Letter objects that represent our word
+	this.letters = value
+		.split()
+		.map(function(v) {
+			return new Letter(v);
+		});
 }
 
-
-function CheckLetters(){
-	this.selectedWord = ;
-	this.isLetterInWord = false; //check if letter exists in code at all
-	this.blanksAndSuccesses = [];
-	this.lettersinWord = [];
-	this.numBlanks = 0;
-	this.letterMatch = function(){
-		for(var i=0; i<numBlanks; i++){
-		if (selectedWord[i] == letter){
-			isLetterInWord = true;
-			}
-		}
-	}
-
-
-
-	//for loop to check if the letter matches
-
-
-	//check where in the word, letter exists & create blanks&success
-	if(isLetterInWord){ //to check if letter is in the word so u can then figure out whether or not to reduce a letter in counter
-		for(var i=0; i<numBlanks; i++){ //
-			if(selectedWord[i] == letter){
-				blanksAndSuccesses[i] = letter;
-			}
-		}
-	}
-	//letter wasnt found
-	else {
-		wrongLetters.push(letter);
-		guessesLeft--;
-
-	}
-
-	//testing/debug
-	console.log(blanksAndSuccesses);
+// Takes Letters and calls .show on each one,
+// collects them into a new array,
+// calls .join to return a string
+Word.prototype.show = function() {
+	return this.letters
+		.map(function(v) {
+			return v.show();
+		})
+		.join();
 }
 
+// Modifiy any correctly guessed letter to set visible to true
+// then it will return true or false depending on if a correct letter was guessed
+Word.prototype.guess = function(guess) {
+	return this.letters
+		.map(function(l) {
+			var match = (guess === l.value);
+			l.visible = l.visible || match;
+			return match;
+		})
+		.some(function(v) {
+			return v;
+		});
+}
 
+// Return true or false depending on if the word has been completely guessed
+Word.prototype.finished = function() {
+	return this.show() === this.value;
+}
 
-	this.wordOptions = ["humerus", "ulna", "femur", "carpals", "tarsals", "navicular"]
-	this.selectedWord = function(){
-		wordOptions[Math.floor(Math.random()*wordOptions.length)]
-	};
+module.exports = Word;

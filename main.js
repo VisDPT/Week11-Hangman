@@ -5,6 +5,10 @@
 //var letter = require('./letter.js');
 var inquirer = require('inquirer');
 
+var Letter = require('./game.js');
+var Word = require('./word.js');
+console.log(Word.value);
+
 inquirer.prompt([{ // Start
         type: "confirm",
         message: "\n" +
