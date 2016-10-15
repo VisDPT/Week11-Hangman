@@ -10,10 +10,12 @@ function Letter(value) {
 }
 
 Letter.prototype.show = function() { //show me the letter, if visible, I get the letter
+    // console.log(' im seen');
     if (this.visible) {
         return this.value; 
     } else {
-        return '_';
+        return ' _ ';
+        //guessesLeft--;
     }
 }
 

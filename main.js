@@ -17,10 +17,10 @@ var guessesLeft = 10;
 
 
 var noPlay = function() {
-    console.log("=======================================" +
-        "♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪" +
+    console.log("=======================================\n" +
+        "♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪\n" +
         "                                       \n" +
-        "You are missing out on some serious fun!\n" +
+        "YOU ARE MISSING OUT ON SOME SERIOUS FUN!!\n" +
         "            ╲╲╲╲╲┏━━━┓╱╱╱╱╱\n" +
         "♫   ♫   ♫   ╲┏━━━┻━━━┻━━━┓╱\n" +
         "  ♪   ♪   ♪ ╲┃╭━╮┏━━━┓╭━╮┃╱\n" +
@@ -42,25 +42,41 @@ var play = function() {
             name: "guess",
         }, ]).then(function(answers) {
             //console.log("You chose " +answers.guess);
+            SelectedWord.guess(answers.guess);
+            console.log(SelectedWord.show());
+
             userGuessesArray.push(answers.guess);
             //DEBUG TO SEE IF ARRAY WORKS!
-            console.log("You already guessed:" + userGuessesArray);
-            guessesLeft--;
-            console.log("You have " + guessesLeft + "guesses left!");
+            console.log("You guessed:" + userGuessesArray);
+            
+            console.log("You have " + guessesLeft + " guesses left!");
             //console.log (SelectedWord);
             //console.log(SelectedWord.letters[0].value);
 
             var ugLowercase = answers.guess;
             var lcGuess = ugLowercase.toLowerCase();
 
+           guessesLeft--;
 
-            for (var i = 0; i < SelectedWord.letters.length; i++) {
-                //SelectedWord.letters[i].value.length
-                if (SelectedWord.letters[i].value == lcGuess) {
-                    console.log("GOOD JOB");
-                    //console.log(SelectedWord.letters[i].value.length);
-                }
-            }
+
+
+            // for (var i = 0; i < SelectedWord.letters.length; i++) {
+            //     //SelectedWord.letters[i].value.length
+
+            //     if (SelectedWord.letters[i].value == lcGuess) {
+            //         //console.log(SelectedWord);
+            //         console.log("GOOD JOB");
+            //         var showLetter = Letter.prototype.show(SelectedWord.letters[i].value);
+            //         console.log (showLetter);
+            //         //console.log(SelectedWord.letters[i].value.length);
+
+            //     }
+            //     else {
+
+            //     }
+
+
+            // }
             play();
         });
     }
@@ -72,10 +88,16 @@ var startGame = function() {
     inquirer.prompt([{ // Start
         type: "confirm",
         message: "\n" +
+            ("*****************************************************************\n" +
+            "\n" +
             "   ╔══╗ ♫      ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n" +
             "   ║██║♫♪        ARE YOU READY TO PLAY MUSICAL HANGMAN?   \n" +
             "   ║ ◎♫♪♫        To Play: Guess a letter! You get 10 tries!\n" +
-            "   ╚══╝        ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n",
+            "   ╚══╝        ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫ ♪ ♪ ♫ ♪ ♫ ♪ ♫ ♪\n" +
+            "\n" +
+            "*****************************************************************\n"),
+            
+
         name: "confirm",
         default: true
     }, ]).then(function(user) {
@@ -93,39 +115,3 @@ var startGame = function() {
 }
 
 startGame();
-
-// if (guesses.length < 8) {
-//     inquirer.prompt([
-//         // Here we create a basic text prompt.
-//         {
-//             type: "input",
-//             message: "Guess a letter.",
-//             name: "guess",
-//         },
-
-
-// If we log that user as a JSON, we can see how it looks.
-// console.log(JSON.stringify(user, null, 2));
-
-// If the user confirms, we displays the user's name and pokemon from the answers. 
-
-
-
-
-// Here we ask the user to confirm.
-
-
-// Once we are done with all the questions... "then" we do stuff with the answers
-// In this case, we store all of the answers into a "user" object that inquirer makes for us. 
-
-
-
-// If we log that user as a JSON, we can see how it looks.
-// console.log(JSON.stringify(user, null, 2));
-
-
-
-// If the user guess == letter.value, we displays the user letter
-
-
-// If the user guess == letter.value, we displays the user letter

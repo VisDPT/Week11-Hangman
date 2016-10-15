@@ -36,8 +36,9 @@ Word.prototype.guess = function(guess) {
 		.map(function(l) {
 			var match = (guess === l.value);
 			l.visible = l.visible || match;
-			return match;
+			return l;
 		})
+		//tests whether some element in the array passes the test implemented by the provided function.
 		.some(function(v) {
 			return v;
 		});
