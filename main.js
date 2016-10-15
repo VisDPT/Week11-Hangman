@@ -5,8 +5,12 @@
 //var letter = require('./letter.js');
 var inquirer = require('inquirer');
 
-var Letter = require('./game.js');
+
+
+
+var SelectedWord = require('./game.js');
 var Word = require('./word.js');
+var Letter = require('./letter.js')
 
 var userGuessesArray=[];
 var guessesLeft = 10;
@@ -38,21 +42,32 @@ var play = function() {
             name: "guess",
         }, 
         ]).then(function(answers) {
-            console.log("You chose " +answers.guess);
+            //console.log("You chose " +answers.guess);
             userGuessesArray.push(answers.guess);
             //DEBUG TO SEE IF ARRAY WORKS!
-            //console.log(userGuessesArray);
+            console.log(userGuessesArray);
             guessesLeft --;
-            console.log("You have " + guessesLeft + "!");
-            
-        play();
+            console.log("You have " + guessesLeft + "guesses left!");
+            //console.log (SelectedWord);
+            //console.log(SelectedWord.letters[0].value);
 
-            //if the 
+            var ugLowercase = answers.guess;
+            var lcGuess =ugLowercase.toLowerCase();
 
 
+             for (var i = 0; i < SelectedWord.letters.length ; i++) {
+                //SelectedWord.letters[i].value.length
+                 if (SelectedWord.letters[i].value == lcGuess) {
+                     console.log("GOOD JOB");
+                   //console.log(SelectedWord.letters[i].value.length);
+
+                 }
+             }
+            play();
+
+         
 
 
-            //console.log("good guess")
         });
     }
 }

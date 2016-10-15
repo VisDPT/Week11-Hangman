@@ -14,6 +14,7 @@ function Word(value) {
 	this.letters = value.split("")
 		.map(function(v) {
 			return new Letter(v);
+			
 		});
 }
 
